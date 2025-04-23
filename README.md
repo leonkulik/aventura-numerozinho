@@ -1,4 +1,4 @@
-# 🧠 Aventuras com o Númerozinho
+# 🧠 Aventuras com o Númerozinho -v2
 
 Um jogo educativo para crianças a partir de 6 anos, criado em HTML, CSS e JavaScript.  
 Ajude o Númerozinho a concluir todos os mundos matemáticos e conquistar o Certificado de Matemágica!
