@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aventuras com o Númerozinho - 1.2</title>
+  <title>Aventuras com o Númerozinho</title>
   <style>
     body {
       font-family: sans-serif;
@@ -34,19 +34,23 @@
       transition: width 0.5s;
     }
     .slider {
-      display: flex;
-      transition: transform 0.4s ease-in-out;
-      width: 900vw;
-    }
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+  width: calc(9 * 100vw);
+  max-width: 100vw;
+  overflow-x: hidden;
+}
     .slide {
-      flex: 0 0 100vw;
-      height: 100vh;
-      padding: 100px 20px 20px;
-      box-sizing: border-box;
-      background: #fffde7;
-      text-align: center;
-      font-size: 22px;
-    }
+  flex: 0 0 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  padding: 100px 20px 20px;
+  box-sizing: border-box;
+  background: #fffde7;
+  text-align: center;
+  font-size: 22px;
+  overflow-x: hidden;
+}
     input, select {
       font-size: 22px;
       text-align: center;
@@ -97,7 +101,7 @@
   <div class="slider" id="slider">
     <!-- Tela de Boas-Vindas com nome -->
     <div class="slide" id="bemvindo">
-      <h1>Bem-vindo à Aventura do Númerozinho 2!</h1>
+      <h1>Bem-vindo à Aventura do Númerozinho! - 1</h1>
       <p>Digite seu nome para começar:</p>
       <input id="nomeCrianca" placeholder="Seu nome aqui">
       <br><br>
