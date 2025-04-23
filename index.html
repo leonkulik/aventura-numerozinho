@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aventuras com o Númerozinho</title>
+  <title>Aventuras com o Númerozinho (v2)</title>
   <style>
     body {
       font-family: sans-serif;
       background: #e3f2fd;
       margin: 0;
-      overflow: hidden;
+      overflow-x: hidden; overflow-y: auto;
     }
     h1 {
       color: #0277bd;
@@ -107,7 +107,7 @@
     <div class="slide" id="mundo1">
       <h1>Mundo 1: A Trilha dos Números</h1>
       <p>Complete a sequência:</p>
-      <p>12, 13, <input id="num1">, 15, <input id="num2">, 17</p>
+      <p>12, 13, <input id="num1" style="width: 40px;">, 15, <input id="num2" style="width: 40px;">, 17</p>
       <button onclick="verificarMundo1()">Verificar</button>
       <div class="feedback" id="feedback1"></div>
     </div>
