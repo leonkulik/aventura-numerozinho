@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aventuras com o Númerozinho</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: #e3f2fd;
+      margin: 0;
+      overflow: hidden;
+    }
+    h1 {
+      color: #0277bd;
+      margin: 0;
+      padding: 10px;
+    }
+    .progress {
+      background-color: #bbdefb;
+      border-radius: 20px;
+      height: 25px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    .progress-bar {
+      background-color: #ffca28;
+      height: 100%;
+      border-radius: 20px;
+      width: 0%;
+      transition: width 0.5s;
+    }
+    .slider {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+      width: 1100vw;
+    }
+    .slide {
+      flex: 0 0 100vw;
+      height: 100vh;
+      padding: 100px 20px 20px;
+      box-sizing: border-box;
+      background: #fffde7;
+      text-align: center;
+      font-size: 22px;
+    }
+    input, select {
+      font-size: 22px;
+      text-align: center;
+      padding: 5px;
+      border-radius: 10px;
+      border: 2px solid #64b5f6;
+    }
+    button {
+      background-color: #00c853;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      margin-top: 20px;
+      border-radius: 12px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .feedback {
+      margin-top: 15px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .correct {
+      animation: blink-green 0.5s ease-in-out 2;
+    }
+    .wrong {
+      animation: blink-red 0.5s ease-in-out 2;
+    }
+    @keyframes blink-green {
+      0% { background-color: #c8e6c9; }
+      100% { background-color: transparent; }
+    }
+    @keyframes blink-red {
+      0% { background-color: #ffcdd2; }
+      100% { background-color: transparent; }
+    }
+  </style>
+</head>
+<body style="overflow-y: auto;" onload="document.getElementById('slider').style.transform = 'translateX(0vw)';">
+  <audio id="successSound" src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"></audio>
+  <audio id="errorSound" src="https://actions.google.com/sounds/v1/cartoon/cartoon_boing.ogg"></audio>
+  <audio id="celebrationSound" src="https://actions.google.com/sounds/v1/ambiences/party_crowd_cheer.ogg"></audio>
+
+  <div class="progress">
+    <div class="progress-bar" id="barraProgresso"></div>
+  </div>
+
+  <div class="slider" id="slider">
+    <!-- Tela de Boas-Vindas com nome -->
+    <div class="slide" id="bemvindo">
+      <h1>Bem-vindo à Aventura do Númerozinho!</h1>
+      <p>Digite seu nome para começar:</p>
+      <input id="nomeCrianca" placeholder="Seu nome aqui">
+      <br><br>
+      <button onclick="comecarJogo()">Começar!</button>
+    </div>
+    <!-- Mundos 1 a 6 -->
+    <div class="slide" id="mundo1">
+      <h1>Mundo 1: A Trilha dos Números</h1>
+      <p>Complete a sequência:</p>
+      <p>12, 13, <input id="num1">, 15, <input id="num2">, 17</p>
+      <button onclick="verificarMundo1()">Verificar</button>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+    <!-- Mundo 2 -->
+    <div class="slide" id="mundo2">
+      <h1>Mundo 2: O Reino das Formas</h1>
+      <p>Qual é o nome dessa figura?</p>
+      <div style="font-size: 100px;">⬛</div>
+      <select id="forma">
+        <option value="">Escolha uma opção</option>
+        <option value="círculo">Círculo</option>
+        <option value="triângulo">Triângulo</option>
+        <option value="quadrado">Quadrado</option>
+        <option value="retângulo">Retângulo</option>
+      </select><br>
+      <button onclick="verificarMundo2()">Verificar</button>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+
+    <!-- Mundo 3 -->
+    <div class="slide" id="mundo3">
+      <h1>Mundo 3: Montanha Cresce e Desce</h1>
+      <p>Coloque em ordem crescente:</p>
+      <p><b>9, 2, 7</b></p>
+      <select id="ordem">
+        <option value="">Escolha a ordem</option>
+        <option value="2,7,9">2, 7, 9</option>
+        <option value="9,7,2">9, 7, 2</option>
+        <option value="7,2,9">7, 2, 9</option>
+      </select><br>
+      <button onclick="verificarMundo3()">Verificar</button>
+      <div class="feedback" id="feedback3"></div>
+    </div>
+
+    <!-- Mundo 4 -->
+    <div class="slide" id="mundo4">
+      <h1>Mundo 4: A Cidade das Dúzias</h1>
+      <p>Quantos ovos tem uma dúzia?</p>
+      <select id="duzia">
+        <option value="">Escolha uma opção</option>
+        <option value="6">6</option>
+        <option value="10">10</option>
+        <option value="12">12</option>
+        <option value="20">20</option>
+      </select><br>
+      <button onclick="verificarMundo4()">Verificar</button>
+      <div class="feedback" id="feedback4"></div>
+    </div>
+
+    <!-- Mundo 5 -->
+    <div class="slide" id="mundo5">
+      <h1>Mundo 5: O Portal dos Vizinhos</h1>
+      <p>Quem vem antes e depois do número 8?</p>
+      <select id="vizinhos">
+        <option value="">Escolha uma opção</option>
+        <option value="7 e 9">7 e 9</option>
+        <option value="6 e 7">6 e 7</option>
+        <option value="8 e 10">8 e 10</option>
+        <option value="9 e 10">9 e 10</option>
+      </select><br>
+      <button onclick="verificarMundo5()">Verificar</button>
+      <div class="feedback" id="feedback5"></div>
+    </div>
+
+    <!-- Mundo 6 -->
+    <div class="slide" id="mundo6">
+      <h1>Mundo 6: A Colina da Contagem</h1>
+      <p>Quantos coelhos você vê?</p>
+      <div style="font-size: 40px;">🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰</div>
+      <select id="contagem">
+        <option value="">Escolha uma opção</option>
+        <option value="10">10</option>
+        <option value="12">12</option>
+        <option value="14">14</option>
+        <option value="8">8</option>
+      </select><br>
+      <button onclick="verificarMundo6()">Verificar</button>
+      <div class="feedback" id="feedback6"></div>
+    </div>
+    <div class="slide" id="mundoFinal">
+      <h1>Parabéns!</h1>
+      <p>Você completou todas as aventuras com o Númerozinho!</p>
+      <p>🎉🏅✨</p>
+      <p style="font-size: 24px; margin-top: 20px;">Aqui está o seu certificado de Matemágica:</p>
+      <div style="border: 3px dashed #0277bd; margin: 20px; padding: 20px; background: #ffffff;">
+        <h2>Certificado de Aventura Matemágica</h2>
+        <p>Este certificado é concedido a:</p>
+        <p id="nomeCertificado" style="font-size: 26px; font-weight: bold;">[Nome da Criança]</p>
+        <p>Por completar com sucesso todas as missões matemáticas!</p>
+        <p>🧠 + 💪 = 🏆</p>
+      </div>
+      
+      <button onclick="reiniciarJogo()">Voltar ao Início</button>
+    </div>
+  </div>
+
+  <script>
+    let etapaAtual = 0;
+    function atualizarBarra(p) { document.getElementById('barraProgresso').style.width = p + '%'; }
+    function irParaProximoSlide() {
+      etapaAtual++;
+      document.getElementById('slider').style.transform = `translateX(-${etapaAtual * 100}vw)`;
+    }
+    function reiniciarJogo() {
+  etapaAtual = 0;
+  atualizarBarra(0);
+  document.getElementById('nomeCrianca').value = "";
+  document.getElementById('nomeCertificado').textContent = '[Nome da Criança]';
+  document.getElementById('slider').style.transform = 'translateX(0vw)';
+
+  // Limpar mensagens de feedback
+  for (let i = 1; i <= 6; i++) {
+    const feedback = document.getElementById(`feedback${i}`);
+    if (feedback) {
+      feedback.textContent = '';
+      feedback.className = 'feedback';
+    }
+  }
+
+  // Limpar campos e seleções
+  document.getElementById('num1').value = "";
+  document.getElementById('num2').value = "";
+  document.getElementById('forma').value = "";
+  document.getElementById('ordem').value = "";
+  document.getElementById('duzia').value = "";
+  document.getElementById('vizinhos').value = "";
+  document.getElementById('contagem').value = "";
+}
+    function atualizarCertificado() {
+  const nome = document.getElementById('nomeCrianca').value;
+  document.getElementById('nomeCertificado').textContent = nome || '[Nome da Criança]';
+}
+    function tocarSom(id) {
+      const audio = document.getElementById(id);
+      if (audio) { audio.currentTime = 0; audio.play(); }
+    }
+    function feedback(el, msg, ok = true) {
+      el.textContent = msg;
+      el.style.color = ok ? 'green' : 'red';
+      el.className = 'feedback ' + (ok ? 'correct' : 'wrong');
+      tocarSom(ok ? 'successSound' : 'errorSound');
+    }
+
+    function verificarMundo1() {
+      const r1 = document.getElementById('num1').value;
+      const r2 = document.getElementById('num2').value;
+      const fb = document.getElementById('feedback1');
+      if (r1 === "14" && r2 === "16") {
+        feedback(fb, 'Muito bem! Vamos para o próximo mundo!', true);
+        atualizarBarra(16);
+        setTimeout(irParaProximoSlide, 800);
+      } else {
+        feedback(fb, 'Hmm... algo está errado. Tente de novo!', false);
+      }
+    }
+  function verificarMundo2() {
+      const resposta = document.getElementById('forma').value;
+      const fb = document.getElementById('feedback2');
+      if (resposta === "quadrado") {
+        feedback(fb, 'Isso mesmo! Você encontrou o quadrado!', true);
+        atualizarBarra(32);
+        setTimeout(irParaProximoSlide, 800);
+      } else {
+        feedback(fb, 'Ops! Tente novamente!', false);
+      }
+    }
+function verificarMundo3() {
+      const resposta = document.getElementById('ordem').value;
+      const fb = document.getElementById('feedback3');
+      if (resposta === "2,7,9") {
+        feedback(fb, 'Você organizou direitinho! Subimos a montanha!', true);
+        atualizarBarra(48);
+        setTimeout(irParaProximoSlide, 800);
+      } else {
+        feedback(fb, 'Ainda não está certo... tente outra vez!', false);
+      }
+    }
+
+    function verificarMundo4() {
+      const resposta = document.getElementById('duzia').value;
+      const fb = document.getElementById('feedback4');
+      if (resposta === "12") {
+        feedback(fb, 'Perfeito! Uma dúzia tem 12!', true);
+        atualizarBarra(64);
+        setTimeout(irParaProximoSlide, 800);
+      } else {
+        feedback(fb, 'Ainda não é isso! Tente de novo!', false);
+      }
+    }
+
+    function verificarMundo5() {
+      const resposta = document.getElementById('vizinhos').value;
+      const fb = document.getElementById('feedback5');
+      if (resposta === "7 e 9") {
+        feedback(fb, 'Muito bem! Os vizinhos do 8 são 7 e 9!', true);
+        atualizarBarra(80);
+        setTimeout(irParaProximoSlide, 800);
+      } else {
+        feedback(fb, 'Hmm... quase! Tente novamente.', false);
+      }
+    }
+
+    function verificarMundo6() {
+      const resposta = document.getElementById('contagem').value;
+      const fb = document.getElementById('feedback6');
+      if (resposta === "12") {
+        feedback(fb, 'Você contou direitinho! Parabéns!', true);
+        atualizarBarra(100);
+        setTimeout(() => {
+          tocarSom('celebrationSound');
+          irParaProximoSlide();
+        }, 800);
+      } else {
+        feedback(fb, 'Oops! Errou na contagem. Tente outra vez!', false);
+      }
+    }
+function comecarJogo() {
+  const nome = document.getElementById('nomeCrianca').value;
+  document.getElementById('nomeCertificado').textContent = nome || '[Nome da Criança]';
+  etapaAtual = 1;
+  document.getElementById('slider').style.transform = 'translateX(-100vw)';
+  atualizarBarra(0);
+}
+</script>
+</body>
+</html>
