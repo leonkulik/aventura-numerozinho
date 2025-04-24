@@ -96,6 +96,22 @@
       0% { background-color: #ffcdd2; }
       100% { background-color: transparent; }
     }
+    
+    .page-bg.lego {
+      background: url('https://leonkulik.github.io/aventura-numerozinho/lego.png') no-repeat bottom right;
+    }
+    .page-bg.mario {
+      background: url('https://leonkulik.github.io/aventura-numerozinho/mario.png') no-repeat bottom right;
+    }
+    .page-bg.metroid {
+      background: url('https://leonkulik.github.io/aventura-numerozinho/metroid.png') no-repeat top left;
+    }
+    .page-bg.starwars {
+      background: url('https://leonkulik.github.io/aventura-numerozinho/starwars.png') no-repeat top right;
+    }
+    .page-bg.numberblocks {
+      background: url('https://leonkulik.github.io/aventura-numerozinho/numberblocks.png') no-repeat top left;
+    }
   </style>
 </head>
 <body style="overflow-x: hidden; overflow-y: auto;">
@@ -110,7 +126,7 @@
   <div class="slider" id="slider">
     <!-- Tela de Boas-Vindas com nome -->
     <div class="slide" id="bemvindo">
-      <h1>Bem-vindo à Aventura do Númerozinho!</h1>
+      <h1>Bem-vindo à Aventura dos Números!</h1>
       <p>Digite seu nome para começar:</p>
       <input id="nomeCrianca" placeholder="Seu nome aqui">
       <br><br>
@@ -119,7 +135,7 @@
     <!-- Mundos 1 a 6 -->
 
     <!-- Mundo 1 -->
-    <div class="slide" id="mundo1" style="background: linear-gradient(to bottom, #d0f4f7, #f9fbe7); background-image: url('https://www.transparenttextures.com/patterns/mario.png'); background-size: cover;">
+    <div class="slide page-bg lego" id="mundo1" >
       <h1>Mundo 1A: A Trilha dos Números</h1>
       <p>Complete a sequência:</p>
       <p>12, 13, <input id="num1" style="width: 40px;">, 15, <input id="num2" style="width: 40px;">, 17</p>
@@ -127,7 +143,7 @@
       <div class="feedback" id="feedback1"></div>
     </div>
 
-    <div class="slide" id="mundo1b" style="background: linear-gradient(to bottom, #d0f4f7, #f9fbe7); background-image: url('https://www.transparenttextures.com/patterns/mario.png'); background-size: cover;">
+    <div class="slide page-bg lego" id="mundo1b">
       <h1>Mundo 1B: A Trilha dos Números</h1>
       <p>Qual número vem depois de 29?</p>
       <select id="depois29">
@@ -143,9 +159,7 @@
 
     
   <!-- Mundo 2 -->
-        <div class="slide" id="mundo2" style="background: linear-gradient(to bottom, #000000, #1a237e); background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); background-size: cover; color: white;">
-  <img src="https://upload.wikimedia.org/wikipedia/en/8/87/Darth_Vader_ESB.png" alt="Darth Vader" style="position: absolute; bottom: 20px; right: 20px; height: 120px;">
-
+        <div class="slide page-bg metroid" id="mundo2">
       <h1>Mundo 2A: O Reino das Formas</h1>
       <p>Qual é o nome dessa figura?</p>
       <div style="font-size: 100px;">⬛</div>
@@ -160,7 +174,7 @@
       <div class="feedback" id="feedback2"></div>
     </div>
 
-    <div class="slide" id="mundo2b">
+    <div class="slide page-bg metroid" id="mundo2b">
       <h1>Mundo 2B: O Reino das Formas</h1>
       <p>Qual é o nome dessa figura?</p>
       <div style="font-size: 100px;">🔺</div>
@@ -176,8 +190,7 @@
     </div>
   
     <!-- Mundo 3 --> 
-    <div class="slide" id="mundo3" style="background: linear-gradient(to bottom, #8bc34a, #aed581); background-image: url('https://www.transparenttextures.com/patterns/brick-wall.png'); background-size: cover;">
-  <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Steve_%28Minecraft%29.png" alt="Steve do Minecraft" style="position: absolute; bottom: 20px; left: 20px; height: 100px;">
+    <div class="slide page-bg mario" id="mundo3">
       <h1>Mundo 3: Montanha Cresce e Desce</h1>
       <p>Coloque em ordem crescente:</p>
       <p><b>9, 2, 7</b></p>
@@ -192,7 +205,7 @@
     </div>
 
     
-    <div class="slide" id="mundo3b" style="background: linear-gradient(to bottom, #8bc34a, #aed581); background-image: url('https://www.transparenttextures.com/patterns/brick-wall.png'); background-size: cover;">
+    <div class="slide page-bg mario" id="mundo3b">
   <h1>Mundo 3B: Montanha Cresce e Desce</h1>
   <p>Coloque em ordem decrescente:</p>
   <p><b>4, 9, 1</b></p>
@@ -207,8 +220,7 @@
 </div>
 
     <!-- Mundo 4 -->
-<div class="slide" id="mundo4" style="background: linear-gradient(to bottom, #fff59d, #fdd835); background-image: url('https://www.transparenttextures.com/patterns/noise-pattern-with-subtle-cross-lines.png'); background-size: cover;">
-  <img src="https://upload.wikimedia.org/wikipedia/en/4/45/Numberblocks_logo.png" alt="Numberblocks" style="position: absolute; top: 20px; right: 20px; height: 100px;">
+<div class="slide page-bg starwars" id="mundo4">
   <h1>Mundo 4A: A Cidade das Dúzias</h1>
   <p>Quantos ovos tem uma dúzia?</p>
   <select id="duzia">
@@ -222,7 +234,7 @@
   <div class="feedback" id="feedback4"></div>
 </div>
 
-<div class="slide" id="mundo4b" style="background: linear-gradient(to bottom, #fff59d, #fdd835); background-image: url('https://www.transparenttextures.com/patterns/noise-pattern-with-subtle-cross-lines.png'); background-size: cover;">
+<div class="slide page-bg starwars" id="mundo4b">
   <h1>Mundo 4B: A Cidade das Dúzias</h1>
   <p>Quantos ovos tem meia dúzia?</p>
   <select id="meiaduzia">
@@ -238,8 +250,7 @@
 
 <!-- Mundo 5 -->
    
-<div class="slide" id="mundo5" style="background: linear-gradient(to bottom, #263238, #37474f); background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'); background-size: cover; color: #fff;">
-  <img src="https://upload.wikimedia.org/wikipedia/en/f/f2/Samus_Aran.png" alt="Samus Aran" style="position: absolute; top: 10px; left: 10px; height: 120px;">
+<div class="slide page-bg numberblocks" id="mundo5">
   <h1>Mundo 5A: O Portal dos Vizinhos</h1>
   <p>Quem vem antes e depois do número 8?</p>
   <select id="vizinhos">
@@ -253,7 +264,7 @@
   <div class="feedback" id="feedback5"></div>
 </div>
 
-<div class="slide" id="mundo5b" style="background: linear-gradient(to bottom, #263238, #37474f); background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'); background-size: cover; color: #fff;">
+<div class="slide page-bg numberblocks" id="mundo5b" >
   <h1>Mundo 5B: O Portal dos Vizinhos</h1>
   <p>Quem vem antes e depois do número 15?</p>
   <select id="vizinhos15">
@@ -269,8 +280,7 @@
 
 <!-- Mundo 6 -->
      
-    <div class="slide" id="mundo6" style="background: linear-gradient(to bottom, #f44336, #fdd835); background-image: url('https://www.transparenttextures.com/patterns/lego.png'); background-size: cover;">
-  <img src="https://upload.wikimedia.org/wikipedia/en/e/e7/Lego_logo.svg" alt="Logo Lego" style="position: absolute; top: 10px; left: 10px; height: 80px;">
+    <div class="slide" id="mundo6">
   <h1>Mundo 6A: A Colina da Contagem</h1>
   <p>Quantos coelhos você vê?</p>
   <div style="font-size: 40px;">🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰</div>
@@ -285,7 +295,7 @@
   <div class="feedback" id="feedback6"></div>
 </div>
 
-<div class="slide" id="mundo6b" style="background: linear-gradient(to bottom, #f44336, #fdd835); background-image: url('https://www.transparenttextures.com/patterns/lego.png'); background-size: cover;">
+<div class="slide" id="mundo6b">
   <h1>Mundo 6B: A Colina da Contagem</h1>
   <p>Quantos corações você vê?</p>
   <div style="font-size: 40px;">❤️❤️❤️❤️❤️❤️</div>
