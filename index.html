@@ -3,21 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Aventuras com o Númerozinho (v2)</title>
+  <title>Aventuras com os Números</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
     body {
-      font-family: sans-serif;
-      background: #e3f2fd;
+      font-family: 'Fredoka One', cursive;
+      background: linear-gradient(to bottom, #fce4ec, #f3e5f5);
       margin: 0;
-      overflow-x: hidden; overflow-y: auto;
+      overflow-x: hidden; 
+      overflow-y: auto;
     }
     h1 {
-      color: #0277bd;
+      color: #6a1b9a;
       margin: 0;
       padding: 10px;
+      text-shadow: 1px 1px 2px white;
     }
     .progress {
-      background-color: #bbdefb;
+      background-color: #f8bbd0;
       border-radius: 20px;
       height: 25px;
       width: 100%;
@@ -25,53 +29,58 @@
       top: 0;
       left: 0;
       z-index: 1000;
+      box-shadow: inset 0 0 5px #ec407a;
     }
     .progress-bar {
-      background-color: #ffca28;
+      background-color: #ec407a;
       height: 100%;
       border-radius: 20px;
       width: 0%;
       transition: width 0.5s;
     }
     .slider {
-  display: flex;
-  transition: transform 0.4s ease-in-out;
-  width: calc(9 * 100vw);
-  
-  overflow-x: hidden;
-}
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+      width: calc(14 * 100vw);
+      overflow-x: hidden;
+    }
     .slide {
-  flex: 0 0 100vw;
-  max-width: 100vw;
-  height: 100vh;
-  padding: 100px 20px 20px;
-  box-sizing: border-box;
-  background: #fffde7;
-  text-align: center;
-  font-size: 22px;
-  overflow-x: hidden;
-}
-    input, select {
-      font-size: 22px;
+      flex: 0 0 100vw;
+      max-width: 100vw;
+      height: 100vh;
+      padding: 100px 20px 20px;
+      box-sizing: border-box;
+      background: #fff3e0;
       text-align: center;
-      padding: 5px;
-      border-radius: 10px;
-      border: 2px solid #64b5f6;
+      font-size: 24px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    input, select {
+      font-size: 24px;
+      text-align: center;
+      padding: 8px;
+      border-radius: 14px;
+      border: 2px solid #ba68c8;
+      background-color: #f3e5f5;
+      box-shadow: 1px 1px 2px #ce93d8;
     }
     button {
-      background-color: #00c853;
+      background-color: #ab47bc;
       color: white;
-      padding: 12px 24px;
+      padding: 14px 28px;
       border: none;
       margin-top: 20px;
-      border-radius: 12px;
+      border-radius: 14px;
       font-size: 20px;
       cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     }
     .feedback {
-      margin-top: 15px;
-      font-size: 22px;
+      margin-top: 20px;
+      font-size: 24px;
       font-weight: bold;
+      text-shadow: 1px 1px white;
     }
     .correct {
       animation: blink-green 0.5s ease-in-out 2;
@@ -108,16 +117,36 @@
       <button onclick="comecarJogo()">Começar!</button>
     </div>
     <!-- Mundos 1 a 6 -->
-    <div class="slide" id="mundo1">
-      <h1>Mundo 1: A Trilha dos Números</h1>
+
+    <!-- Mundo 1 -->
+    <div class="slide" id="mundo1" style="background: linear-gradient(to bottom, #d0f4f7, #f9fbe7); background-image: url('https://www.transparenttextures.com/patterns/mario.png'); background-size: cover;">
+      <h1>Mundo 1A: A Trilha dos Números</h1>
       <p>Complete a sequência:</p>
       <p>12, 13, <input id="num1" style="width: 40px;">, 15, <input id="num2" style="width: 40px;">, 17</p>
       <button onclick="verificarMundo1()">Verificar</button>
       <div class="feedback" id="feedback1"></div>
     </div>
-    <!-- Mundo 2 -->
-    <div class="slide" id="mundo2">
-      <h1>Mundo 2: O Reino das Formas</h1>
+
+    <div class="slide" id="mundo1b" style="background: linear-gradient(to bottom, #d0f4f7, #f9fbe7); background-image: url('https://www.transparenttextures.com/patterns/mario.png'); background-size: cover;">
+      <h1>Mundo 1B: A Trilha dos Números</h1>
+      <p>Qual número vem depois de 29?</p>
+      <select id="depois29">
+        <option value="">Escolha uma opção</option>
+        <option value="28">28</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        <option value="27">27</option>
+      </select><br>
+      <button onclick="verificarMundo1b()">Verificar</button>
+      <div class="feedback" id="feedback1b"></div>
+    </div>
+
+    
+  <!-- Mundo 2 -->
+        <div class="slide" id="mundo2" style="background: linear-gradient(to bottom, #000000, #1a237e); background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); background-size: cover; color: white;">
+  <img src="https://upload.wikimedia.org/wikipedia/en/8/87/Darth_Vader_ESB.png" alt="Darth Vader" style="position: absolute; bottom: 20px; right: 20px; height: 120px;">
+
+      <h1>Mundo 2A: O Reino das Formas</h1>
       <p>Qual é o nome dessa figura?</p>
       <div style="font-size: 100px;">⬛</div>
       <select id="forma">
@@ -131,8 +160,24 @@
       <div class="feedback" id="feedback2"></div>
     </div>
 
-    <!-- Mundo 3 -->
-    <div class="slide" id="mundo3">
+    <div class="slide" id="mundo2b">
+      <h1>Mundo 2B: O Reino das Formas</h1>
+      <p>Qual é o nome dessa figura?</p>
+      <div style="font-size: 100px;">🔺</div>
+      <select id="forma2">
+        <option value="">Escolha uma opção</option>
+        <option value="círculo">Círculo</option>
+        <option value="triângulo">Triângulo</option>
+        <option value="quadrado">Quadrado</option>
+        <option value="retângulo">Retângulo</option>
+      </select><br>
+      <button onclick="verificarMundo2b()">Verificar</button>
+      <div class="feedback" id="feedback2b"></div>
+    </div>
+  
+    <!-- Mundo 3 --> 
+    <div class="slide" id="mundo3" style="background: linear-gradient(to bottom, #8bc34a, #aed581); background-image: url('https://www.transparenttextures.com/patterns/brick-wall.png'); background-size: cover;">
+  <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Steve_%28Minecraft%29.png" alt="Steve do Minecraft" style="position: absolute; bottom: 20px; left: 20px; height: 100px;">
       <h1>Mundo 3: Montanha Cresce e Desce</h1>
       <p>Coloque em ordem crescente:</p>
       <p><b>9, 2, 7</b></p>
@@ -146,51 +191,115 @@
       <div class="feedback" id="feedback3"></div>
     </div>
 
+    
+    <div class="slide" id="mundo3b" style="background: linear-gradient(to bottom, #8bc34a, #aed581); background-image: url('https://www.transparenttextures.com/patterns/brick-wall.png'); background-size: cover;">
+  <h1>Mundo 3B: Montanha Cresce e Desce</h1>
+  <p>Coloque em ordem decrescente:</p>
+  <p><b>4, 9, 1</b></p>
+  <select id="decrescente">
+    <option value="">Escolha a ordem</option>
+    <option value="1,4,9">1, 4, 9</option>
+    <option value="9,4,1">9, 4, 1</option>
+    <option value="4,9,1">4, 9, 1</option>
+  </select><br>
+  <button onclick="verificarMundo3b()">Verificar</button>
+  <div class="feedback" id="feedback3b"></div>
+</div>
+
     <!-- Mundo 4 -->
-    <div class="slide" id="mundo4">
-      <h1>Mundo 4: A Cidade das Dúzias</h1>
-      <p>Quantos ovos tem uma dúzia?</p>
-      <select id="duzia">
-        <option value="">Escolha uma opção</option>
-        <option value="6">6</option>
-        <option value="10">10</option>
-        <option value="12">12</option>
-        <option value="20">20</option>
-      </select><br>
-      <button onclick="verificarMundo4()">Verificar</button>
-      <div class="feedback" id="feedback4"></div>
-    </div>
+<div class="slide" id="mundo4" style="background: linear-gradient(to bottom, #fff59d, #fdd835); background-image: url('https://www.transparenttextures.com/patterns/noise-pattern-with-subtle-cross-lines.png'); background-size: cover;">
+  <img src="https://upload.wikimedia.org/wikipedia/en/4/45/Numberblocks_logo.png" alt="Numberblocks" style="position: absolute; top: 20px; right: 20px; height: 100px;">
+  <h1>Mundo 4A: A Cidade das Dúzias</h1>
+  <p>Quantos ovos tem uma dúzia?</p>
+  <select id="duzia">
+    <option value="">Escolha uma opção</option>
+    <option value="6">6</option>
+    <option value="10">10</option>
+    <option value="12">12</option>
+    <option value="20">20</option>
+  </select><br>
+  <button onclick="verificarMundo4()">Verificar</button>
+  <div class="feedback" id="feedback4"></div>
+</div>
 
-    <!-- Mundo 5 -->
-    <div class="slide" id="mundo5">
-      <h1>Mundo 5: O Portal dos Vizinhos</h1>
-      <p>Quem vem antes e depois do número 8?</p>
-      <select id="vizinhos">
-        <option value="">Escolha uma opção</option>
-        <option value="7 e 9">7 e 9</option>
-        <option value="6 e 7">6 e 7</option>
-        <option value="8 e 10">8 e 10</option>
-        <option value="9 e 10">9 e 10</option>
-      </select><br>
-      <button onclick="verificarMundo5()">Verificar</button>
-      <div class="feedback" id="feedback5"></div>
-    </div>
+<div class="slide" id="mundo4b" style="background: linear-gradient(to bottom, #fff59d, #fdd835); background-image: url('https://www.transparenttextures.com/patterns/noise-pattern-with-subtle-cross-lines.png'); background-size: cover;">
+  <h1>Mundo 4B: A Cidade das Dúzias</h1>
+  <p>Quantos ovos tem meia dúzia?</p>
+  <select id="meiaduzia">
+    <option value="">Escolha uma opção</option>
+    <option value="3">3</option>
+    <option value="6">6</option>
+    <option value="4">4</option>
+    <option value="12">12</option>
+  </select><br>
+  <button onclick="verificarMundo4b()">Verificar</button>
+  <div class="feedback" id="feedback4b"></div>
+</div>
 
-    <!-- Mundo 6 -->
-    <div class="slide" id="mundo6">
-      <h1>Mundo 6: A Colina da Contagem</h1>
-      <p>Quantos coelhos você vê?</p>
-      <div style="font-size: 40px;">🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰</div>
-      <select id="contagem">
-        <option value="">Escolha uma opção</option>
-        <option value="10">10</option>
-        <option value="12">12</option>
-        <option value="14">14</option>
-        <option value="8">8</option>
-      </select><br>
-      <button onclick="verificarMundo6()">Verificar</button>
-      <div class="feedback" id="feedback6"></div>
-    </div>
+<!-- Mundo 5 -->
+   
+<div class="slide" id="mundo5" style="background: linear-gradient(to bottom, #263238, #37474f); background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'); background-size: cover; color: #fff;">
+  <img src="https://upload.wikimedia.org/wikipedia/en/f/f2/Samus_Aran.png" alt="Samus Aran" style="position: absolute; top: 10px; left: 10px; height: 120px;">
+  <h1>Mundo 5A: O Portal dos Vizinhos</h1>
+  <p>Quem vem antes e depois do número 8?</p>
+  <select id="vizinhos">
+    <option value="">Escolha uma opção</option>
+    <option value="7 e 9">7 e 9</option>
+    <option value="6 e 7">6 e 7</option>
+    <option value="8 e 10">8 e 10</option>
+    <option value="9 e 10">9 e 10</option>
+  </select><br>
+  <button onclick="verificarMundo5()">Verificar</button>
+  <div class="feedback" id="feedback5"></div>
+</div>
+
+<div class="slide" id="mundo5b" style="background: linear-gradient(to bottom, #263238, #37474f); background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'); background-size: cover; color: #fff;">
+  <h1>Mundo 5B: O Portal dos Vizinhos</h1>
+  <p>Quem vem antes e depois do número 15?</p>
+  <select id="vizinhos15">
+    <option value="">Escolha uma opção</option>
+    <option value="14 e 16">14 e 16</option>
+    <option value="13 e 15">13 e 15</option>
+    <option value="15 e 17">15 e 17</option>
+    <option value="12 e 14">12 e 14</option>
+  </select><br>
+  <button onclick="verificarMundo5b()">Verificar</button>
+  <div class="feedback" id="feedback5b"></div>
+</div>
+
+<!-- Mundo 6 -->
+     
+    <div class="slide" id="mundo6" style="background: linear-gradient(to bottom, #f44336, #fdd835); background-image: url('https://www.transparenttextures.com/patterns/lego.png'); background-size: cover;">
+  <img src="https://upload.wikimedia.org/wikipedia/en/e/e7/Lego_logo.svg" alt="Logo Lego" style="position: absolute; top: 10px; left: 10px; height: 80px;">
+  <h1>Mundo 6A: A Colina da Contagem</h1>
+  <p>Quantos coelhos você vê?</p>
+  <div style="font-size: 40px;">🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰</div>
+  <select id="contagem">
+    <option value="">Escolha uma opção</option>
+    <option value="10">10</option>
+    <option value="12">12</option>
+    <option value="14">14</option>
+    <option value="8">8</option>
+  </select><br>
+  <button onclick="verificarMundo6()">Verificar</button>
+  <div class="feedback" id="feedback6"></div>
+</div>
+
+<div class="slide" id="mundo6b" style="background: linear-gradient(to bottom, #f44336, #fdd835); background-image: url('https://www.transparenttextures.com/patterns/lego.png'); background-size: cover;">
+  <h1>Mundo 6B: A Colina da Contagem</h1>
+  <p>Quantos corações você vê?</p>
+  <div style="font-size: 40px;">❤️❤️❤️❤️❤️❤️</div>
+  <select id="contagemCoracoes">
+    <option value="">Escolha uma opção</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+  </select><br>
+  <button onclick="verificarMundo6b()">Verificar</button>
+  <div class="feedback" id="feedback6b"></div>
+</div>
+      
     <div class="slide" id="mundoFinal">
       <h1>Parabéns!</h1>
       <p>Você completou todas as aventuras com o Númerozinho!</p>
@@ -334,6 +443,75 @@ function comecarJogo() {
   etapaAtual = 1;
   document.getElementById('slider').style.transform = 'translateX(-100vw)';
   atualizarBarra(0);
+}
+function verificarMundo1b() {
+  const resposta = document.getElementById('depois29').value;
+  const fb = document.getElementById('feedback1b');
+  if (resposta === "30") {
+    feedback(fb, 'Acertou! Depois de 29 vem 30!', true);
+    atualizarBarra(24);
+    setTimeout(irParaProximoSlide, 800);
+  } else {
+    feedback(fb, 'Tente novamente!', false);
+  }
+}
+function verificarMundo2b() {
+  const resposta = document.getElementById('forma2').value;
+  const fb = document.getElementById('feedback2b');
+  if (resposta === "triângulo") {
+    feedback(fb, 'Isso mesmo! O triângulo tem 3 lados!', true);
+    atualizarBarra(40);
+    setTimeout(irParaProximoSlide, 800);
+  } else {
+    feedback(fb, 'Não é essa! Tente outra vez.', false);
+  }
+}
+function verificarMundo3b() {
+  const resposta = document.getElementById('decrescente').value;
+  const fb = document.getElementById('feedback3b');
+  if (resposta === "9,4,1") {
+    feedback(fb, 'Muito bem! Essa é a ordem decrescente!', true);
+    atualizarBarra(56);
+    setTimeout(irParaProximoSlide, 800);
+  } else {
+    feedback(fb, 'Tente novamente. A ordem ainda está errada!', false);
+  }
+}
+function verificarMundo4b() {
+  const resposta = document.getElementById('meiaduzia').value;
+  const fb = document.getElementById('feedback4b');
+  if (resposta === "6") {
+    feedback(fb, 'Correto! Meia dúzia é 6!', true);
+    atualizarBarra(72);
+    setTimeout(irParaProximoSlide, 800);
+  } else {
+    feedback(fb, 'Ops, essa não é a resposta certa. Tente de novo!', false);
+  }
+}
+function verificarMundo5b() {
+  const resposta = document.getElementById('vizinhos15').value;
+  const fb = document.getElementById('feedback5b');
+  if (resposta === "14 e 16") {
+    feedback(fb, 'Muito bem! Os vizinhos de 15 são 14 e 16!', true);
+    atualizarBarra(88);
+    setTimeout(irParaProximoSlide, 800);
+  } else {
+    feedback(fb, 'Hmm... não são esses. Tente de novo!', false);
+  }
+}
+function verificarMundo6b() {
+  const resposta = document.getElementById('contagemCoracoes').value;
+  const fb = document.getElementById('feedback6b');
+  if (resposta === "6") {
+    feedback(fb, 'Muito bem! Você contou 6 corações!', true);
+    atualizarBarra(100);
+    setTimeout(() => {
+      tocarSom('celebrationSound');
+      irParaProximoSlide();
+    }, 800);
+  } else {
+    feedback(fb, 'Tente contar novamente!', false);
+  }
 }
 </script>
 </body>
